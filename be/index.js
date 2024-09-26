@@ -1,14 +1,16 @@
 const express = require('express');
 const cors = require("cors")
 const mongoose = require('mongoose');
+
+
 const postsRouter = require('./router/postRouter')
 const commentsRouter = require('./router/commentRouter')
 const userRouter = require('./router/usersRouter')
 
 
-const app = express();
+const app = express(express.urlencoded({ extended: true }));
 app.use(cors({ origin: '*' }))
-
+app.use(express.json());
 
 
 const port = 3000;
@@ -22,9 +24,11 @@ const connectData = async () => {
 }
 
 connectData()
+
 app.get('/', (req, res) => {
     res.send('Hello, World from Express!');
 });
+
 app.use("/posts", postsRouter)
 app.use("/comments", commentsRouter)
 app.use("/users", userRouter)

@@ -4,11 +4,17 @@ const Router = express.Router();
 
 
 const {
-    fetchCommentByPostId,
-} = require('../service/commentsService')
+    add,
+    addComment,
+    removeComment,
+    updateComment,
+} = require('../service/commentsService');
+const { protect } = require("../auth/auth");
 
 
-Router.route("/").get(fetchCommentByPostId)
+Router.route("/add").post(protect, addComment)
+Router.route("/update").post(protect, updateComment)
+Router.route("/remove/:commentId").get(protect, removeComment)
 
 
 module.exports = Router;
