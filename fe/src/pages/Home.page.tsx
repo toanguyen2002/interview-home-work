@@ -13,7 +13,7 @@ export function HomePage() {
   const [posts, setPosts] = useState([])
   const [render, isRender] = useState(false)
   const [opened, { open, close }] = useDisclosure(false);
-  const user = JSON.parse(localStorage.getItem("user") || '"');
+  const user = JSON.parse(localStorage.getItem("user") || '""');
   const form = useForm({
     mode: 'controlled',
     initialValues: { title: 'title test 01', content: 'content test 01', hastags: 'red,green,blue,pink' },
